@@ -24,7 +24,7 @@
 *********************************************************************************************************
 * For       : ARMv7-M Cortex-M
 * Mode      : Thumb-2 ISA
-* Toolchain : ARM C Compiler
+* Toolchain : GNU C Compiler
 *********************************************************************************************************
 * Note(s)   : (1) This port supports the ARM Cortex-M3, Cortex-M4 and Cortex-M7 architectures.
 *             (2) It has been tested with the following Hardware Floating Point Unit.
@@ -91,7 +91,7 @@ extern  "C" {                                    /* See Note #1.                
 #define  OS_CPU_EXCEPT_STK_SIZE      256u        /* Default exception stack size is 256 OS_STK entries */
 #endif
 
-#ifndef  __TARGET_FPU_SOFTVFP
+#if (defined(__VFP_FP__) && !defined(__SOFTFP__))
 #define  OS_CPU_ARM_FP_EN              1u
 #else
 #define  OS_CPU_ARM_FP_EN              0u
@@ -205,8 +205,8 @@ void       OSIntCtxSw             (void);
 void       OSStartHighRdy         (void);
 
                                                  /* See OS_CPU_C.C                                     */
-//void       OS_CPU_SysTickInit     (INT32U     cnts);
-//void       OS_CPU_SysTickInitFreq (INT32U     cpu_freq);
+void       OS_CPU_SysTickInit     (INT32U     cnts);
+void       OS_CPU_SysTickInitFreq (INT32U     cpu_freq);
 
 void       OS_CPU_SysTickHandler  (void);
 void       OS_CPU_PendSVHandler   (void);
