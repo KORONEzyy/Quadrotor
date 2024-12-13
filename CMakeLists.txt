@@ -11,20 +11,6 @@ SET(CMAKE_SYSTEM μCos)
 SET(CMAKE_SYSTEM_PROCESSOR arm)
 SET(CMAKE_CROSSCOMPILING 1)
 
-set(publish_bin_debug 			${LED_SOURCE_DIR}/obj/bin)
-set(publish_bin_release 		${LED_SOURCE_DIR}/obj/bin)
-
-set(publish_lib_debug  			${LED_SOURCE_DIR}/obj/lib)
-set(publish_lib_release 		${LED_SOURCE_DIR}/obj/lib)
-
-# 指定可执行程序输出目录
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG 	${publish_bin_debug})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE 	${publish_bin_release})
-
-# 指定 库文件输出目录
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG 	${publish_lib_debug})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RLEASE 	${publish_lib_release})
-
 # 添加启动文件
 set(STARTUP_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Libraries/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f401xx.s)
 set(OS_CPU_A_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Ports/os_cpu_a.asm)
@@ -34,7 +20,6 @@ set(SEGGER_RTT_ASM_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Trace/Systemview_src/SEGGER_
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/STM32F401RE_FLASH.ld)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Cfg)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/RTE/_Project_New)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Ports)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Source/inc)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Libraries/STM32F4xx_StdPeriph_Driver/inc)
